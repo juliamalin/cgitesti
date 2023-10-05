@@ -21,20 +21,6 @@ class App extends Component {
       });
   }
 
-  addPerson(newPerson) {
-    axios
-      .post("api/people", newPerson)
-      .then((response) => {
-        const updatedData = [...this.state.data, response.data];
-        this.setState({ data: updatedData });
-
-        this.formRef.reset();
-      })
-      .catch((error) => {
-        console.error("Virhe:", error);
-      });
-  }
-
   render() {
     const { data } = this.state;
 

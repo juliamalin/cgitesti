@@ -26,7 +26,7 @@ class PersonForm extends Component {
   }
 
   handleChange = (event, field) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     this.setState((prevState) => ({
       person: {
         ...prevState.person,
@@ -36,9 +36,7 @@ class PersonForm extends Component {
   };
 
   handleChangeAddress = (event, field) => {
-    const { name, value } = event.target;
-    console.log(value);
-    console.log(name);
+    const { value } = event.target;
     this.setState((prevState) => ({
       person: {
         ...prevState.person,
@@ -48,11 +46,9 @@ class PersonForm extends Component {
         },
       },
     }));
-    console.log(this.state);
   };
 
   addFamilyRelationship = ({ newRelationship }) => {
-    console.log({ newRelationship });
     const updatedPerson = {
       ...this.state.person,
       familyRelationships: [
@@ -67,7 +63,6 @@ class PersonForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { person } = this.state;
-    console.log(person);
     axios
       .post("/api/people", person)
       .then((response) => {
