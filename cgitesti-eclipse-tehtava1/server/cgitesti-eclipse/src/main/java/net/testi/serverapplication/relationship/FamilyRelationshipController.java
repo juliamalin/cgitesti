@@ -28,50 +28,9 @@ public class FamilyRelationshipController {
         return family;
     }
     
-    @GetMapping("/{id}")
-    public FamilyRelationship getRelationshipById(@PathVariable Integer id) {
-        System.out.println("GET id request received.");
-        for (FamilyRelationship familyRelationship : family) {
-            if (familyRelationship.getId().equals(id)) {
-                return familyRelationship;
-            }
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Relationship not found with id " + id);
-    }
-    
     @PostMapping
     FamilyRelationship create(@RequestBody FamilyRelationship f) {
-    	f.setId((Integer) (family.size() + 1));
     	family.add(f);
         return f;
     }
-    
-    @PutMapping("/{id}")
-    FamilyRelationship updateRelationship(@PathVariable int id, @RequestBody FamilyRelationship updatedRelationship) {
-        for (int i = 0; i < family.size(); i++) {
-        	FamilyRelationship r = family.get(i);
-            if (r.getId().equals(id)) {
-                r.setRelationshipType(updatedRelationship.getRelationshipType());
-                r.setRelatedPerson(updatedRelationship.getRelatedPerson());
-                return r;
-            }
-        }
-
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Relationship not found with id " + id);
-    }
-    
-    @DeleteMapping("/{id}")
-    RequestInfo deleteRelationship(@PathVariable int id) {
-        for (int i = 0; i < family.size(); i++) {
-        	FamilyRelationship r = family.get(i);
-            if (r.getId().equals(id)) {
-            	family.remove(i);
-        		return new RequestInfo("Deleted");
-            }
-        }
-
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Relationship not found with id " + id);
-    }
-
-
 }

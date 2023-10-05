@@ -1,18 +1,10 @@
 package net.testi.serverapplication.address;
 
 public class Address {
-    private Integer id;
     private String streetAddress;
     private String postalCode;
     private String city;
     private String country;
-    
-    public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
     
 	public String getStreetAddress() {
 		return streetAddress;
@@ -38,6 +30,35 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) {
+	        return true;
+	    }
+	    if (obj == null || getClass() != obj.getClass()) {
+	        return false;
+	    }
+
+	    Address otherAddress = (Address) obj;
+
+	    boolean streetAddressEquals = streetAddress.equals(otherAddress.streetAddress);
+	    boolean postalCodeEquals = postalCode.equals(otherAddress.postalCode);
+	    boolean cityEquals = city.equals(otherAddress.city);
+	    boolean countryEquals = country.equals(otherAddress.country);
+
+	    return streetAddressEquals && postalCodeEquals && cityEquals && countryEquals;
+	}
+	
+	public Address copy() {
+	    Address copy = new Address();
+	    copy.setStreetAddress(this.streetAddress);
+	    copy.setPostalCode(this.postalCode);
+	    copy.setCity(this.city);
+	    copy.setCountry(this.country);
+	    return copy;
+	}
+
+
 
 }
 

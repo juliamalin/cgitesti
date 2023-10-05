@@ -79,4 +79,18 @@ public class PersonController {
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person not found with id " + id);
     }
+    
+    @PostMapping("/checkIfExists")
+    public boolean checkIfPersonExists(@RequestBody Person personToCheck) {
+        for (Person existingPerson : people) {
+            if (existingPerson.equals(personToCheck)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    
+    
 }
