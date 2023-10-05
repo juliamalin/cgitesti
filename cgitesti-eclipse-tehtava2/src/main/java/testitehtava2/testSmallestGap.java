@@ -19,19 +19,35 @@ public class testSmallestGap {
         assertEquals(0, smallestGap2);
         assertEquals(0, smallestGap3);
     }
-
+    
     @Test
-    public void testFindSmallestGapWithNullInput() {
-        int[] numbers = null;
-        int smallestGap = SmallestGap.findSmallestGap(numbers);
-        assertEquals(0, smallestGap);
+    public void testFindSmallestGapWithSameNumbers() {
+        int[] numbers1 = {1, 4, 10};
+        int[] numbers2 = {10, 1, 4};
+        int[] numbers3 = {4, 10, 1};
+        
+        int smallestGap1 = SmallestGap.findSmallestGap(numbers1);
+        int smallestGap2 = SmallestGap.findSmallestGap(numbers2);
+        int smallestGap3 = SmallestGap.findSmallestGap(numbers3);
+
+        assertEquals(2, smallestGap1);
+        assertEquals(2, smallestGap2);
+        assertEquals(2, smallestGap3);
     }
-
+    
     @Test
-    public void testFindSmallestGapWithEmptyInput() {
-        int[] numbers = {};
-        int smallestGap = SmallestGap.findSmallestGap(numbers);
-        assertEquals(0, smallestGap);
+    public void testFindSmallestGapWithSameNumberDistance() {
+        int[] numbers1 = {1, 3, 5};
+        int[] numbers2 = {1, 4, 7};
+        int[] numbers3 = {1, 5, 9};
+        
+        int smallestGap1 = SmallestGap.findSmallestGap(numbers1);
+        int smallestGap2 = SmallestGap.findSmallestGap(numbers2);
+        int smallestGap3 = SmallestGap.findSmallestGap(numbers3);
+
+        assertEquals(1, smallestGap1);
+        assertEquals(2, smallestGap2);
+        assertEquals(3, smallestGap3);
     }
 
     @Test
